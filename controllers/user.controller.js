@@ -31,6 +31,12 @@ module.exports.register = async(req,res)=>{
                 message: 'Invalid Members!'
             })
         }
+        if(members.length > 5){
+            return res.send({
+                success: false,
+                message: 'Cannot contain more than 5 members!'
+            })
+        }
         const filteredMembers = members.filter((member)=> (member.role && member.role === 'Leader'))
         if(filteredMembers.length == 0 && members.length > 1){
             return res.send({
